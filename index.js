@@ -46,3 +46,36 @@ $('#info').click(function() {
 
 // BUTTONS ANIMATIONS AND AUDIO LOGIC END HERE
 
+
+// start button logic
+let userName = "";
+let notification = document.getElementById("notification");
+document.getElementById("name").addEventListener("change",function(){
+  userName = document.getElementById("name").value;
+});
+
+
+document.getElementById("start-button").addEventListener("click", startGame);
+
+function startGame(){
+  if(!userName){
+    alert("Please Enter your name to start the game!!!!");
+  } else{
+      notification.innerText = `Hiii ${userName}, Welcome to the Game!!!`;
+   
+      setTimeout(function() {
+      notification.innerText = ``;
+      }, 5000);
+
+      gameLogic();
+
+      $('.name-div').slideToggle('slow');
+
+    document.getElementById("name").value = null;
+    userName = null;
+  }
+};
+
+function gameLogic(){
+  
+}

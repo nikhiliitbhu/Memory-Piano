@@ -62,7 +62,7 @@ button {
 
 
 /* start button */
-.start-button {
+#start-button {
   margin: 1rem;
       padding: 20px 60px;
       font-size: 28px;
@@ -78,14 +78,19 @@ button {
       position: relative;
     }
 
-    .start-button:hover {
+    #start-button:hover {
       background: #00ffcc;
       color: #121212;
       box-shadow: 0 0 40px #00ffcc, 0 0 20px #00ffcc inset;
       transform: scale(1.05);
     }
 
-    .start-button:active {
+    #start-button:active {
       transform: scale(0.95);
       box-shadow: 0 0 10px #00ffcc;
+    }
+
+    #notification{
+      font-size: larger;
+      font-family: Arial, Helvetica, sans-serif;
     }
