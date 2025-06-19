@@ -38,6 +38,7 @@ for (let i = 0; i < 9; i++) {
   piano.appendChild(btn);
 }
 
+$('#how-to-play').slideToggle('fast');
 $('#info').click(function() {
     $('#how-to-play').slideToggle('slow');
   });
