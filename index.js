@@ -80,7 +80,7 @@ function startGame(){
       notification.innerHTML = `Hii ${userName}, Welcome to the Game!!! <br> Level 1 <br> Listen 📢`;
       setTimeout(function() {
       gameLogic();
-      }, 3000);
+      }, 2000);
 
     restart();
   }
@@ -89,10 +89,10 @@ function startGame(){
 function gameLogic(){
 // clickButtonNTimes(3, 1000);
 
- let score = 0, level = 3;
+ let score = 0, level = 1000;
  let music = [], player = []; 
 
- while(level<4){
+ while(level<1001){
   notification.innerHTML = `Level ${level} <br> Listen 📢`;
   scoreBoard.value = `${score}`;
 
@@ -100,7 +100,7 @@ function gameLogic(){
   for(let i = 0; i < level; i++ ){
     music.push(randomizer());
   }
-  clickButtonNTimes(level, 1000, music);
+  clickButtonNTimes(level, 750, music);
 
 
   //player input
@@ -108,6 +108,12 @@ function gameLogic(){
   notification.innerHTML = `Level ${level} <br> Play 📢`;
 
   player = getPlayerInput(player);
+
+
+
+  //verify player input
+
+
 
   score++;
   level++;
