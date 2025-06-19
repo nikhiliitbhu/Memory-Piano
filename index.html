@@ -6,12 +6,12 @@
 
 
   <link rel="stylesheet" href="index.css">
+  <link rel="icon" href="images/favicon.png ">
 </head>
 <body>
-    <h1>MEMORY PIANO &nbsp;&nbsp;&nbsp; 
-    <img class="icon" id="info" src="images/letter-i.png" alt="info">
+    <h1>MEMORY PIANO &nbsp;&nbsp;&nbsp;     </h1> 
 
-    </h1> 
+    <img class="icon" id="info" src="images/letter-i.png" alt="info" style="position: fixed; top:1rem; right: 1rem;">
 
     <div id="how-to-play">
       Enter your name and click Start to start the game. <br>
@@ -25,20 +25,39 @@
 
     <div class="name-div">
     <label for="name" style="font-size: xx-large;">Enter your name here:</label><br>
-    <input type="text" id="name" placeholder="Enter your name here" style="border-radius: 10px; background-color: lightgray; color: black; margin: 1rem; font-weight: bolder; width: 400px; height: 50px; font-size: 20px; padding: 10px">
-</div>
-
+    <input type="text" id="name" placeholder="Enter your name here" style="border-radius: 10px; background-color: lightgray; color: black; margin: 1rem; font-weight: bolder; width: 400px; height: 50px; font-size: 20px; padding: 10px"><br>
    <button id="start-button">Start Game</button>
 
-   <div id="notification"></div>
-    <section id="piano">
+</div>
+
+
+   <div id="notification" style="font-size: xx-large;"></div>
+
+  
+    
+
+      <section id="piano">
+
+
   <div class="piano">
     <!-- Buttons will be created by JS -->
   </div>
 
 
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="index.js"></script>
+  
 </section>
+
+<div id="score-board">
+  
+      <label for="score" style="font-size: medium;">Score</label><br>
+      <input disabled type="text" id="score" placeholder="" style="border-radius: 10px; background-color: lightgray; color: black;  font-weight: bolder; width: 5rem; height: 50px; font-size: 20px; padding: 10px">
+  </div>
+ 
+
+  <img src="images/restart.png" class="icon" alt="Restart" title="Restart game." id="restart">
+
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="index.js"></script>

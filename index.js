@@ -39,6 +39,7 @@ for (let i = 0; i < 9; i++) {
 }
 
 $('#how-to-play').slideToggle('fast');
+document.getElementById("name").value="";
 $('#info').click(function() {
     $('#how-to-play').slideToggle('slow');
   });
@@ -46,10 +47,17 @@ $('#info').click(function() {
 
 // BUTTONS ANIMATIONS AND AUDIO LOGIC END HERE
 
+document.getElementById("restart").addEventListener("click",restart);
+
+function restart(){ 
+  // location.reload();
+}
 
 // start button logic
 let userName = "";
-let notification = document.getElementById("notification");
+const notification = document.getElementById("notification");
+const scoreBoard = document.getElementById("score");
+
 document.getElementById("name").addEventListener("change",function(){
   userName = document.getElementById("name").value;
 });
@@ -62,20 +70,39 @@ function startGame(){
     alert("Please Enter your name to start the game!!!!");
   } else{
       notification.innerText = `Hiii ${userName}, Welcome to the Game!!!`;
-   
-      setTimeout(function() {
-      notification.innerText = ``;
-      }, 5000);
+
+
+      document.getElementById("score-board").style.display = "block";
+      $('.name-div').slideToggle('slow');
+      $('#start-button').slideToggle('slow');
 
       gameLogic();
 
-      $('.name-div').slideToggle('slow');
-
-    document.getElementById("name").value = null;
-    userName = null;
+    restart();
   }
 };
 
 function gameLogic(){
+
+
+ let score = 0, level = 1;
+ let music = []; 
+
+ while(level<2){
+  notification.innerHTML = `Level ${level} <br> Listen 📢`;
+  scoreBoard.value = `${score}`;
+
+  for(let i = 0; i < level; i++ ){
+    music.push(randomizer());
+  }
+
   
+
+  level++;
+ }
+}
+
+
+function randomizer(){
+  return Math.trunc(Math.random()*81%9);
 }
