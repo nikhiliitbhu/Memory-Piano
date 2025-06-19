@@ -1,4 +1,3 @@
-
 // BUTTONS ANIMATIONS AND AUDIO LOGIC STARTS HERE
 
 const piano = document.querySelector('.piano');
@@ -19,6 +18,7 @@ const notes = [
 for (let i = 0; i < 9; i++) {
   const btn = document.createElement('button');
   btn.className = 'piano-button';
+  btn.id = `key-${i}`;
   btn.style.backgroundColor = colors[i];
   btn.dataset.sound = notes[i];
   btn.innerText = i + 1;
@@ -69,35 +69,47 @@ function startGame(){
   if(!userName){
     alert("Please Enter your name to start the game!!!!");
   } else{
+    document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
       notification.innerText = `Hiii ${userName}, Welcome to the Game!!!`;
-
 
       document.getElementById("score-board").style.display = "block";
       $('.name-div').slideToggle('slow');
       $('#start-button').slideToggle('slow');
 
+
+      notification.innerHTML = `Hii ${userName}, Welcome to the Game!!! <br> Level 1 <br> Listen 📢`;
+      setTimeout(function() {
       gameLogic();
+      }, 3000);
 
     restart();
   }
 };
 
 function gameLogic(){
+// clickButtonNTimes(3, 1000);
 
+ let score = 0, level = 3;
+ let music = [], player = []; 
 
- let score = 0, level = 1;
- let music = []; 
-
- while(level<2){
+ while(level<4){
   notification.innerHTML = `Level ${level} <br> Listen 📢`;
   scoreBoard.value = `${score}`;
 
+  //random music generator and player
   for(let i = 0; i < level; i++ ){
     music.push(randomizer());
   }
+  clickButtonNTimes(level, 1000, music);
 
-  
 
+  //player input
+  document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
+  notification.innerHTML = `Level ${level} <br> Play 📢`;
+
+  player = getPlayerInput(player);
+
+  score++;
   level++;
  }
 }
@@ -105,4 +117,23 @@ function gameLogic(){
 
 function randomizer(){
   return Math.trunc(Math.random()*81%9);
+}
+
+
+//music delay
+function clickButtonNTimes(level, interval, music) {
+  let count = 0;
+  const clickInterval = setInterval(() => {
+    document.getElementById(`key-${music[count]}`).click(); // Simulate button click
+    count++;
+    if (count >= level) {
+      clearInterval(clickInterval);
+    }
+  }, interval);
+}
+
+
+// Player Input
+function getPlayerInput(player){
+  
 }
