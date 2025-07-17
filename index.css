@@ -110,3 +110,45 @@ button {
       right: 1rem;
       cursor:alias;
     }
+
+    /* Leaderboard Styles */
+.leaderboard-container {
+  max-width: 400px;
+  margin: 30px auto;
+  background: linear-gradient(to right, #f9f9f9, #e0eafc);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.leaderboard-container h2 {
+  margin-bottom: 15px;
+  color: pink;
+  font-size: 24px;
+}
+
+.leaderboard {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.leaderboard th, .leaderboard td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.leaderboard thead {
+  background-color: #3498db;
+  color: white;
+}
+
+.leaderboard tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.leaderboard tbody tr:hover {
+  background-color: #dff9fb;
+}

@@ -57,7 +57,31 @@
   <img src="images/restart.png" class="icon" alt="Restart" title="Restart game." id="restart">
 
 </body>
+<footer>
+  <!-- Leaderboard Section -->
+<div class="leaderboard-container">
+  <h2>🏆 Leaderboard</h2>
+  <table class="leaderboard">
+    <thead>
+      <tr>
+        <th>S.No.</th>
+        <th>Player</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody id="leaderboard-body">
+      <!-- Scores will be dynamically inserted here -->
+      <!-- Example row:
+      <tr>
+        <td>Alice</td>
+        <td>5</td>
+      </tr> -->
+    </tbody>
+  </table>
+</div>
+
+</footer>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="index.js"></script>
+  <script type="module" src="index.js"></script>

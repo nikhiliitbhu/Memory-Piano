@@ -1,3 +1,34 @@
+// Firebase ScoreBoard DB
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js"
+import { getDatabase,
+         ref,
+         push,
+         onValue,
+        remove } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js"
+
+const firebaseConfig = {
+    databaseURL: "https://memory-piano-default-rtdb.asia-southeast1.firebasedatabase.app/"
+}
+
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+const referenceInDB = ref(database, "leaderboard");
+
+let leaderBoard = [];
+
+onValue(referenceInDB, function(snapshot){
+    
+    if(snapshot.exists()){
+    leaderBoard = Object.values(snapshot.val()).sort((a, b) => b.score - a.score);;  
+
+    let table = document.getElementById("leaderboard-body");
+    for(let i = 0; i < 10; i++){
+      (leaderBoard[i]) ? (table.innerHTML += `<tr><td>${i+1}<td>${leaderBoard[i].userName} </td> <td> ${leaderBoard[i].score}</td? </tr>`) : '';
+    }
+    }
+});
+
+
 // BUTTONS ANIMATIONS AND AUDIO LOGIC STARTS HERE
 
 const piano = document.querySelector('.piano');
@@ -112,8 +143,12 @@ async function gameLogic() {
     const correct = player.every((val, i) => val === music[i]);
 
     if (!correct) {
-      notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score}`;
-              await new Promise(res => setTimeout(res, 5000));
+      notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score} <br> Check the Leaderboard!`;
+      //Push the score in leaderboard on firebase realtime DB
+      console.log("i was here")
+      push(referenceInDB, {userName, score});
+
+      await new Promise(res => setTimeout(res, 5000));
       location.reload();
       return;
     } else {
@@ -161,8 +196,6 @@ function getPlayerInput(player, music) {
 
       if (player.length === music.length) {
         buttons.forEach(btn => btn.removeEventListener('click', clickHandler));
-
-
         resolve(); // continue game after 1s pause
       }
     };
