@@ -77,7 +77,6 @@ async function startGame() {
   if (!userName) {
     alert("Please Enter your name to start the game!!!!");
   } else {
-    document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
     notification.innerText = `Hiii ${userName}, Welcome to the Game!!!`;
 
     document.getElementById("score-board").style.display = "block";
@@ -109,8 +108,9 @@ async function gameLogic() {
 
     await clickButtonNTimes(level, 750, music);
 
-    document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
+    document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
     notification.innerHTML = `Level ${level} <br> Play 🎹`;
+    document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
 
     await getPlayerInput(player, music);
 
@@ -124,7 +124,6 @@ async function gameLogic() {
     } else {
               // ✅ Add 1000ms delay here
         notification.innerHTML = `Level ${level + 1} <br> Good 🥳`;
-        document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
         await new Promise(res => setTimeout(res, 2000));
     }
 
