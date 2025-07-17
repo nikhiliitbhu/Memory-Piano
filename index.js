@@ -129,14 +129,12 @@ async function gameLogic() {
       music.push(randomizer());
     }
 
-    await clickButtonNTimes(level, 750, music);
-
     document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
-    notification.innerHTML = `Level ${level} <br> Play 🎹`;
+    await clickButtonNTimes(level, 750, music);
     document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
 
+    notification.innerHTML = `Level ${level} <br> Play 🎹`;
     await getPlayerInput(player, music);
-
     const correct = player.every((val, i) => val === music[i]);
 
     if (!correct) {
@@ -205,6 +203,9 @@ function playButton(index) {
   audio.play();
 
   $(btn).css('transform', 'scale(1.1)');
+  $(btn).css('outline', '6px dotted black');
+  $(btn).css('filter', 'brightness(1.3)');
+  
   setTimeout(() => {
     $(btn).css('transform', 'scale(1)');
   }, 100);
