@@ -145,6 +145,7 @@ function clickButtonNTimes(level, interval, music) {
   return new Promise((resolve) => {
     let count = 0;
     const clickInterval = setInterval(() => {
+      document.getElementById(`key-${music[count]}`).focus();
       document.getElementById(`key-${music[count]}`).click(); // Simulate button click
       count++;
       if (count >= level) {
