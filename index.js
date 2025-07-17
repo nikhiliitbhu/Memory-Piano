@@ -63,62 +63,59 @@ document.getElementById("name").addEventListener("change",function(){
 });
 
 
-document.getElementById("start-button").addEventListener("click", startGame);
 
-function startGame(){
-  if(!userName){
+document.getElementById("start-button").addEventListener("click", async () => {
+  await startGame();
+});
+
+async function startGame() {
+  if (!userName) {
     alert("Please Enter your name to start the game!!!!");
-  } else{
+  } else {
     document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
-      notification.innerText = `Hiii ${userName}, Welcome to the Game!!!`;
+    notification.innerText = `Hiii ${userName}, Welcome to the Game!!!`;
 
-      document.getElementById("score-board").style.display = "block";
-      $('.name-div').slideToggle('slow');
-      $('#start-button').slideToggle('slow');
+    document.getElementById("score-board").style.display = "block";
+    $('.name-div').slideToggle('slow');
+    $('#start-button').slideToggle('slow');
 
-
-      notification.innerHTML = `Hii ${userName}, Welcome to the Game!!! <br> Level 1 <br> Listen 📢`;
-      setTimeout(function() {
-      gameLogic();
-      }, 2000);
+    notification.innerHTML = `Hii ${userName}, Welcome to the Game!!! <br> Level 1 <br> Listen 📢`;
+    setTimeout(async () => {
+      await gameLogic();  // optional, only if you need to wait here
+    }, 2000);
 
     restart();
   }
 };
 
-function gameLogic(){
-// clickButtonNTimes(3, 1000);
 
- let score = 0, level = 1000;
- let music = [], player = []; 
+async function gameLogic() {
+  let score = 0, level = 1;
+  let music = [], player = [];
 
- while(level<1001){
-  notification.innerHTML = `Level ${level} <br> Listen 📢`;
-  scoreBoard.value = `${score}`;
+  while (level < 10) {  // Use a small limit for testing
+    notification.innerHTML = `Level ${level} <br> Listen 📢`;
+    scoreBoard.value = `${score}`;
 
-  //random music generator and player
-  for(let i = 0; i < level; i++ ){
-    music.push(randomizer());
+    music = [];
+    for (let i = 0; i < level; i++) {
+      music.push(randomizer());
+    }
+    console.log(music);
+
+    await clickButtonNTimes(level, 750, music); // 🧠 WAIT HERE
+
+    document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
+    notification.innerHTML = `Level ${level} <br> Play 🎹`;
+
+    // Wait for player input here later...
+    getPlayerInput(player);
+
+    score++;
+    level++;
   }
-  clickButtonNTimes(level, 750, music);
-
-
-  //player input
-  document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
-  notification.innerHTML = `Level ${level} <br> Play 📢`;
-
-  player = getPlayerInput(player);
-
-
-
-  //verify player input
-
-
-
-  score++;
-  level++;
- }
 }
+
 
 
 function randomizer(){
@@ -128,18 +125,21 @@ function randomizer(){
 
 //music delay
 function clickButtonNTimes(level, interval, music) {
-  let count = 0;
-  const clickInterval = setInterval(() => {
-    document.getElementById(`key-${music[count]}`).click(); // Simulate button click
-    count++;
-    if (count >= level) {
-      clearInterval(clickInterval);
-    }
-  }, interval);
+  return new Promise((resolve) => {
+    let count = 0;
+    const clickInterval = setInterval(() => {
+      document.getElementById(`key-${music[count]}`).click(); // Simulate button click
+      count++;
+      if (count >= level) {
+        clearInterval(clickInterval);
+        resolve(); // Resolve the Promise when done
+      }
+    }, interval);
+  });
 }
 
 
 // Player Input
 function getPlayerInput(player){
-  
+  alert("I am here again.")
 }
