@@ -47,11 +47,10 @@ $('#info').click(function() {
 
 // BUTTONS ANIMATIONS AND AUDIO LOGIC END HERE
 
-document.getElementById("restart").addEventListener("click",restart);
+const restart = document.getElementById("restart").addEventListener("click",function restartt(){ 
+  location.reload();
+});
 
-function restart(){ 
-  // location.reload();
-}
 
 // start button logic
 let userName = "";
@@ -84,7 +83,8 @@ async function startGame() {
       await gameLogic();  // optional, only if you need to wait here
     }, 2000);
 
-    restart();
+    // alert("i am immediately here")
+    // window.location.reload();
   }
 };
 
@@ -93,7 +93,7 @@ async function gameLogic() {
   let score = 0, level = 1;
   let music = [], player = [];
 
-  while (level < 10) {  // Use a small limit for testing
+  while (level < 10) {
     notification.innerHTML = `Level ${level} <br> Listen 📢`;
     scoreBoard.value = `${score}`;
 
@@ -101,20 +101,28 @@ async function gameLogic() {
     for (let i = 0; i < level; i++) {
       music.push(randomizer());
     }
-    console.log(music);
+    console.log("Music sequence:", music);
 
-    await clickButtonNTimes(level, 750, music); // 🧠 WAIT HERE
+    await clickButtonNTimes(level, 750, music);
 
     document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
     notification.innerHTML = `Level ${level} <br> Play 🎹`;
 
-    // Wait for player input here later...
-    getPlayerInput(player);
+    await getPlayerInput(player, music);
+
+    const correct = player.every((val, i) => val === music[i]);
+
+    if (!correct) {
+      notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score}`;
+      document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
+      return;
+    }
 
     score++;
     level++;
   }
 }
+
 
 
 
@@ -140,6 +148,24 @@ function clickButtonNTimes(level, interval, music) {
 
 
 // Player Input
-function getPlayerInput(player){
-  alert("I am here again.")
+function getPlayerInput(player, music) {
+  return new Promise((resolve) => {
+    player.length = 0; // Clear previous input if any
+    const buttons = document.querySelectorAll('.piano-button');
+
+    // Temporary click handler
+    const clickHandler = (e) => {
+      const index = parseInt(e.target.id.split('-')[1]);
+      player.push(index);
+
+      // Stop collecting once the player has clicked enough
+      if (player.length === music.length) {
+        buttons.forEach(btn => btn.removeEventListener('click', clickHandler));
+        resolve(); // Resolve promise to continue game
+      }
+    };
+
+    buttons.forEach(btn => btn.addEventListener('click', clickHandler));
+  });
 }
+
