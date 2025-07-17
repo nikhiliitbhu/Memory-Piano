@@ -60,7 +60,7 @@ h1 {
 
 button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 2rem;
   transition: transform 0.2s ease;
 }
 
@@ -70,14 +70,14 @@ button {
 
 #how-to-play {
   color: white;
-  font-size: large;
+  font-size: 2rem;
   padding: 1rem;
 }
 
 #start-button {
   margin: 1rem;
   padding: 20px 60px;
-  font-size: 1.5rem;
+  font-size: 4rem;
   color: #fff;
   background: linear-gradient(145deg, #1f1f1f, #2d2d2d);
   border: 3px solid #00ffcc;
@@ -102,7 +102,7 @@ button {
 }
 
 #notification {
-  font-size: 1.2rem;
+  font-size: 3rem;
   padding: 1rem;
 }
 
@@ -114,7 +114,7 @@ button {
 #score-board input {
   width: 5rem;
   height: 50px;
-  font-size: 20px;
+  font-size: 2rem;
   border-radius: 10px;
   background-color: lightgray;
   color: black;
@@ -133,9 +133,8 @@ button {
 
 /* Name input box */
 .name-div input[type="text"] {
-  width: 90%;
-  height: 50px;
-  font-size: 20px;
+  width: 100%;
+  font-size: 3rem;
   padding: 10px;
   border-radius: 10px;
   background-color: lightgray;
@@ -161,7 +160,7 @@ button {
   margin-bottom: 15px;
   padding: 5px 0;
   color: pink;
-  font-size: 1.5rem;
+  font-size: 3rem;
 }
 
 .leaderboard {
@@ -173,7 +172,7 @@ button {
 .leaderboard td {
   padding: 12px 15px;
   border-bottom: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 2rem;
   background: white;
   color: #333;
 }
@@ -197,7 +196,7 @@ button {
   color: white;
   border: none;
   border-radius: 12px;
-  font-size: 16px;
+  font-size: 2rem;
   font-weight: bold;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   cursor: pointer;
