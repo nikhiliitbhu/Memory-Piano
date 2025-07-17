@@ -31,15 +31,17 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 15px;
-  justify-content: center;
-  max-width: 90vw;
+  width: 100%;
+  max-width: 400px;
   margin: 20px auto;
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 
 .piano button {
-  width: 80px;
-  height: 80px;
-  font-size: 20px;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  font-size: 1.2rem;
   border: none;
   border-radius: 10px;
   color: white;
@@ -229,18 +231,17 @@ button {
     font-size: 1rem;
   }
 
-  @media (max-width: 600px) {
-  .piano button {
-    width: 60px;
-    height: 60px;
-    font-size: 16px;
-  }
 
+@media (max-width: 600px) {
   .piano {
+    max-width: 100%;
     gap: 10px;
   }
-}
 
+  .piano button {
+    font-size: 1rem;
+    border-radius: 8px;
+  }
 
   .icon {
     width: 2rem;
@@ -251,4 +252,8 @@ button {
     height: 40px;
     font-size: 16px;
   }
+}
+
+
+  
 }
