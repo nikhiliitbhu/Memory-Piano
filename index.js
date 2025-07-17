@@ -103,16 +103,14 @@ async function startGame() {
   if (!userName) {
     alert("Please Enter your name to start the game!!!!");
   } else {
-    notification.innerText = `Hiii ${userName}, Welcome to the Game!!!`;
-
     document.getElementById("score-board").style.display = "block";
     $('.name-div').slideToggle('slow');
     $('#start-button').slideToggle('slow');
 
-    notification.innerHTML = `Hii ${userName}, Welcome to the Game!!! <br> Level 1 <br> Listen 📢`;
+    notification.innerHTML = `Hii ${userName}, Welcome to the Game!!!`;
     setTimeout(async () => {
       await gameLogic();  // optional, only if you need to wait here
-    }, 2000);
+    }, 3000);
 
   }
 };
