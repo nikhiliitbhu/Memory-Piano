@@ -50,11 +50,7 @@ $('#info').click(function() {
 const restart = document.getElementById("restart").addEventListener("click", () =>{
   if(confirm("Do you want to restart the game?")){
       location.reload();
-    
-  } else {
-    console.log("do nothing")
-  }
-  
+  } 
 });
 
 
@@ -104,7 +100,6 @@ async function gameLogic() {
     for (let i = 0; i < level; i++) {
       music.push(randomizer());
     }
-    console.log("Music sequence:", music);
 
     await clickButtonNTimes(level, 750, music);
 
