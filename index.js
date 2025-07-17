@@ -17,7 +17,6 @@ const referenceInDB = ref(database, "leaderboard");
 let leaderBoard = [];
 
 onValue(referenceInDB, function(snapshot){
-    
     if(snapshot.exists()){
     leaderBoard = Object.values(snapshot.val()).sort((a, b) => b.score - a.score);;  
 
@@ -145,7 +144,7 @@ async function gameLogic() {
     if (!correct) {
       notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score} <br> <a href="#leaderboard-container">Check the Leaderboard!</a> <br><br> <button onclick="window.location.reload()" class="fancy-button">Restart the Game!</button>`;
       //Push the score in leaderboard on firebase realtime DB
-      console.log("i was here")
+      document.getElementById("leaderboard-body").innerHTML = [];
       push(referenceInDB, {userName, score});
       return;
     } else {
