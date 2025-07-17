@@ -47,8 +47,14 @@ $('#info').click(function() {
 
 // BUTTONS ANIMATIONS AND AUDIO LOGIC END HERE
 
-const restart = document.getElementById("restart").addEventListener("click",function restartt(){ 
-  location.reload();
+const restart = document.getElementById("restart").addEventListener("click", () =>{
+  if(confirm("Do you want to restart the game?")){
+      location.reload();
+    
+  } else {
+    console.log("do nothing")
+  }
+  
 });
 
 
@@ -114,7 +120,7 @@ async function gameLogic() {
 
     if (!correct) {
       notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score}`;
-      document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
+      location.reload();
       return;
     }
 
@@ -122,8 +128,6 @@ async function gameLogic() {
     level++;
   }
 }
-
-
 
 
 function randomizer(){
