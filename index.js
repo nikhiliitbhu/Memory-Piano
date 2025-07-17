@@ -204,9 +204,11 @@ function playButton(index) {
 
   $(btn).css('transform', 'scale(1.1)');
   $(btn).css('outline', '6px dotted black');
-  $(btn).css('filter', 'brightness(1.3)');
-  
+  $(btn).css('filter', 'brightness(2)');
+
   setTimeout(() => {
     $(btn).css('transform', 'scale(1)');
-  }, 100);
+    $(btn).css('outline', '');
+    $(btn).css('filter', 'brightness(1)');
+  }, 500);
 }
