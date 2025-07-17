@@ -120,8 +120,13 @@ async function gameLogic() {
 
     if (!correct) {
       notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score}`;
+              await new Promise(res => setTimeout(res, 5000));
       location.reload();
       return;
+    } else {
+              // ✅ Add 1000ms delay here
+        notification.innerHTML = `Level ${level + 1} <br> Good 🥳`;
+        await new Promise(res => setTimeout(res, 2000));
     }
 
     score++;
@@ -154,22 +159,23 @@ function clickButtonNTimes(level, interval, music) {
 // Player Input
 function getPlayerInput(player, music) {
   return new Promise((resolve) => {
-    player.length = 0; // Clear previous input if any
+    player.length = 0;
     const buttons = document.querySelectorAll('.piano-button');
 
-    // Temporary click handler
-    const clickHandler = (e) => {
+    const clickHandler = async (e) => {
       const index = parseInt(e.target.id.split('-')[1]);
       player.push(index);
 
-      // Stop collecting once the player has clicked enough
       if (player.length === music.length) {
         buttons.forEach(btn => btn.removeEventListener('click', clickHandler));
-        resolve(); // Resolve promise to continue game
+
+
+        resolve(); // continue game after 1s pause
       }
     };
 
     buttons.forEach(btn => btn.addEventListener('click', clickHandler));
   });
 }
+
 
