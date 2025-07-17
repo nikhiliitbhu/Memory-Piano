@@ -89,8 +89,6 @@ async function startGame() {
       await gameLogic();  // optional, only if you need to wait here
     }, 2000);
 
-    // alert("i am immediately here")
-    // window.location.reload();
   }
 };
 
@@ -99,7 +97,7 @@ async function gameLogic() {
   let score = 0, level = 1;
   let music = [], player = [];
 
-  while (level < 10) {
+  while (true) {
     notification.innerHTML = `Level ${level} <br> Listen 📢`;
     scoreBoard.value = `${score}`;
 
@@ -126,6 +124,7 @@ async function gameLogic() {
     } else {
               // ✅ Add 1000ms delay here
         notification.innerHTML = `Level ${level + 1} <br> Good 🥳`;
+        document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
         await new Promise(res => setTimeout(res, 2000));
     }
 
@@ -145,8 +144,7 @@ function clickButtonNTimes(level, interval, music) {
   return new Promise((resolve) => {
     let count = 0;
     const clickInterval = setInterval(() => {
-      document.getElementById(`key-${music[count]}`).focus();
-      document.getElementById(`key-${music[count]}`).click(); // Simulate button click
+      playButton(music[count]) // Simulate button click
       count++;
       if (count >= level) {
         clearInterval(clickInterval);
@@ -179,4 +177,14 @@ function getPlayerInput(player, music) {
   });
 }
 
+function playButton(index) {
+  const btn = document.getElementById(`key-${index}`);
+  btn.focus();
+  const audio = new Audio(`sound/${btn.dataset.sound}`);
+  audio.play();
 
+  $(btn).css('transform', 'scale(1.1)');
+  setTimeout(() => {
+    $(btn).css('transform', 'scale(1)');
+  }, 100);
+}
