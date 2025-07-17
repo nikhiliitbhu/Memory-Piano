@@ -130,7 +130,7 @@ async function gameLogic() {
     }
 
     document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = true);
-    await clickButtonNTimes(level, 750, music);
+    await clickButtonNTimes(level, 1000, music);
     document.querySelectorAll('.piano-button').forEach(btn => btn.disabled = false);
 
     notification.innerHTML = `Level ${level} <br> Play 🎹`;
