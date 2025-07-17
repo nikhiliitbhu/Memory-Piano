@@ -112,7 +112,7 @@ button {
     }
 
     /* Leaderboard Styles */
-.leaderboard-container {
+#leaderboard-container {
   max-width: 400px;
   margin: 30px auto;
   background: linear-gradient(to right, #f9f9f9, #e0eafc);
@@ -123,8 +123,9 @@ button {
   font-family: 'Segoe UI', sans-serif;
 }
 
-.leaderboard-container h2 {
+#leaderboard-container h2 {
   margin-bottom: 15px;
+  padding: 5px 0;
   color: pink;
   font-size: 24px;
 }

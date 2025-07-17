@@ -143,7 +143,7 @@ async function gameLogic() {
     const correct = player.every((val, i) => val === music[i]);
 
     if (!correct) {
-      notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score} <br> Check the Leaderboard! <br> <button onclick="window.location.reload()" class="fancy-button">Restart the Game!</button>`;
+      notification.innerHTML = `Oops! Wrong sequence. Game Over 😢<br>Final Score: ${score} <br> <a href="#leaderboard-container">Check the Leaderboard!</a> <br><br> <button onclick="window.location.reload()" class="fancy-button">Restart the Game!</button>`;
       //Push the score in leaderboard on firebase realtime DB
       console.log("i was here")
       push(referenceInDB, {userName, score});
