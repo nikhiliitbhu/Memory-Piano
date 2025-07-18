@@ -19,9 +19,10 @@ let leaderBoard = [];
 onValue(referenceInDB, function(snapshot){
     if(snapshot.exists()){
     leaderBoard = Object.values(snapshot.val()).sort((a, b) => b.score - a.score);;  
-
+    console.log(leaderBoard)
     let table = document.getElementById("leaderboard-body");
-    for(let i = 0; i < 10; i++){
+
+    for(let i = 0; i < 20; i++){
       (leaderBoard[i]) ? (table.innerHTML += `<tr><td>${i+1}<td>${leaderBoard[i].userName} </td> <td> ${leaderBoard[i].score}</td? </tr>`) : '';
     }
     }
