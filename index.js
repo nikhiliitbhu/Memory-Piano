@@ -70,7 +70,7 @@ for (let i = 0; i < 9; i++) {
 }
 
 $('#how-to-play').slideToggle('fast');
-document.getElementById("name").value="";
+document.getElementById("name").value = localStorage.getItem("userName") || "";
 $('#info').click(function() {
     $('#how-to-play').slideToggle('slow');
   });
@@ -104,6 +104,7 @@ async function startGame() {
   if (!userName) {
     alert("Please Enter your name to start the game!!!!");
   } else {
+    localStorage.setItem("userName", userName);
     document.getElementById("score-board").style.display = "block";
     $('.name-div').slideToggle('slow');
     $('#start-button').slideToggle('slow');
