@@ -84,7 +84,7 @@ button {
   transition: all 0.3s ease;
 }
 
-#start-button:hover {
+#start-button:focus {
   background: #00ffcc;
   color: #121212;
   box-shadow: 0 0 40px #00ffcc, 0 0 20px #00ffcc inset;
